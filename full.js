@@ -1,6 +1,3 @@
-///utworz na podstawie tego pliku nowy plik z tymi danymi z dodana labelka np isPriceGreaterThanTen true/false
-
-
 const fs = require("fs");
 const { parseString } = require("xml2js");
 const { Readable } = require("stream");
@@ -22,12 +19,18 @@ function createXmlObjectStream() {
           for (key in result) {
             if (Array.isArray(result[key])) {
               result[key].forEach((element) => {
+                // Dodaj pole "isPriceGreaterThanTen" na podstawie ceny
+                if (element.$.price) {
+                  const price = number(element.$.price);
+                  if (!isNaN(price)) {
+                    element.isPriceGreaterThanTen = price > 10;
+                  }
+                }
                 xmlStream.push(element);
               });
             } else {
               xmlStream.push(result[key]);
             }
-            if (key=price)
           }
 
           // Zapisz dane do pliku JSON
@@ -61,4 +64,3 @@ objectStream.on("end", () => {
 objectStream.on("error", (err) => {
   console.error("Błąd strumienia:", err);
 });
- 
