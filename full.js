@@ -3,7 +3,7 @@ const { parseString } = require("xml2js");
 const { Readable } = require("stream");
 
 const xmlPath = "./full.xml"; // Ścieżka do pliku XML
-const jsonPath = "./full/full2.json"; // Ścieżka do pliku JSON
+const jsonPath = "./full/full2.json"; // Ścieżka do pliku JSON 
 
 function createXmlObjectStream() {
   const xmlStream = new Readable({ objectMode: true });
